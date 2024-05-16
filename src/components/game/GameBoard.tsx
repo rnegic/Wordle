@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Cell from "./Cell";
-
+ 
 interface GameBoardProps {
     n: number;
 }
