@@ -1,32 +1,28 @@
-'use client'
-
-import React, { useState } from 'react';
+import React from 'react';
 import Cell from "./Cell";
- 
+
 interface GameBoardProps {
-    n: number;
+    guesses: string[][];
+    secretWord: string;
+    onChange: (row: number, col: number, value: string) => void;
 }
 
-const GameBoard = ({ n }: GameBoardProps) => {
+const GameBoard = ({ guesses, secretWord, onChange }: GameBoardProps) => {
+    const getCellStatus = (row: number, col: number) => {
+        const letter = guesses[row][col];
+        if (!letter) return undefined;
 
-    const [guesses, setGuesses] = useState<string[][]>(Array.from({ length: 5 }, () => Array(n).fill('')));
-
-    const CellChange = (row: number, col: number, value: string) => {
-        const newGuesses = [...guesses];
-        newGuesses[row][col] = value;
-        setGuesses(newGuesses);
+        if (secretWord[col] === letter) return 'correct';
+        if (secretWord.includes(letter)) return 'present';
+        return 'absent';
     };
 
     return (
-        <div className="flex">
+        <div className="flex flex-col gap-4">
             {guesses.map((row, rowIdx) => (
-                <div key={rowIdx} className="block">
+                <div key={rowIdx} className="flex gap-4">
                     {row.map((col, colIdx) => (
-                        <Cell
-                            key={colIdx}
-                            value={col}
-                            onChange={(value) => CellChange(rowIdx, colIdx, value)}
-                        />
+                        <Cell key={colIdx} value={col} status={getCellStatus(rowIdx, colIdx)} />
                     ))}
                 </div>
             ))}
