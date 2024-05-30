@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cell from "./Cell";
 
 interface GameBoardProps {
@@ -9,6 +9,7 @@ interface GameBoardProps {
 const GameBoard = ({ secretWord }: GameBoardProps) => {
     const [guesses, setGuesses] = useState<string[][]>([]);
     const [currentGuess, setCurrentGuess] = useState('');
+    const [isInvalidWord, setIsInvalidWord] = useState(false);
 
     const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === 'Enter') {
@@ -43,11 +44,15 @@ const GameBoard = ({ secretWord }: GameBoardProps) => {
             setGuesses(prevGuesses => [...prevGuesses, currentGuess.split('')]);
             setCurrentGuess('');
         } else {
-
+            setIsInvalidWord(true);
+            setTimeout(() => setIsInvalidWord(false), 1000);
         }
     };
 
-
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [currentGuess]);
 
     const getCellStatus = (row: number, col: number) => {
         const letter = guesses[row][col];
