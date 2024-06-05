@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cell from "./Cell";
 
 interface GameBoardProps {
-    guesses: string[][];
+    //initialGuesses: string[][];
     secretWord: string;
 }
 

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import GameBoard from "@/components/game/GameBoard";
+import React from "react";
+import GameContainer from "@/components/game/GameContainer";
 
 export default function Home() {
-
   return (
-    <div>
-      {/* <GameBoard/> */}
+    <div className="flex flex-col items-center justify-between min-h-screen">
+      <GameContainer/>
     </div>
   );
 }
