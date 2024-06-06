@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { randomWord } from '../../../lib/words';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'GET') {
-    const word = randomWord();
-    res.status(200).json({ word });
-  } else {
-    res.status(405).json({ message: 'Not Allowed' });
-  }
+export async function GET(req: NextRequest) {
+  const word = randomWord();
+  return NextResponse.json({ word });
+}
+
+export async function POST(req: NextRequest) {
+  return NextResponse.json({ message: 'Not Allowed!' });
 }

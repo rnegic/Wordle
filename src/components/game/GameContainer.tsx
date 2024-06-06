@@ -9,7 +9,7 @@ export default function GameContainer() {
     useEffect(() => { 
         const fetchSecretWord = async () => {
             try {
-                const response = await fetch('/api/generateWord');
+                const response = await fetch('././api/generateWord');
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
                 }

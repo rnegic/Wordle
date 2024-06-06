@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Cell from "./Cell";
 
 interface GameBoardProps {
-    //initialGuesses: string[][];
     secretWord: string;
 }
 
@@ -25,7 +24,6 @@ const GameBoard = ({ secretWord }: GameBoardProps) => {
         }
     }
 
-    //отправляем на сервер конечное слово
     const submitGuess = async () => {
 
         if (currentGuess.length !== secretWord.length) return;
