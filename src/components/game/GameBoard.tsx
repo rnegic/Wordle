@@ -22,7 +22,7 @@ const GameBoard = ({ secretWord }: GameBoardProps) => {
         else if (event.key === 'Backspace') {
             setCurrentGuess(word => word.slice(0, -1));
         }
-    }
+    };
 
     const submitGuess = async () => {
 
@@ -49,7 +49,7 @@ const GameBoard = ({ secretWord }: GameBoardProps) => {
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown)
+        return () => window.removeEventListener('keydown', handleKeyDown);
     }, [currentGuess]);
 
     const getCellStatus = (row: number, col: number) => {
@@ -70,6 +70,12 @@ const GameBoard = ({ secretWord }: GameBoardProps) => {
                     ))}
                 </div>
             ))}
+            <div className="flex gap-4">
+                {Array.from({ length: secretWord.length }).map((_, idx) => (
+                    <Cell key={idx} value={currentGuess[idx] || ''} />
+                ))}
+            </div>
+            {isInvalidWord && <div className="text-red-500 flex justify-center">Неправильное слово!</div>}
         </div>
     );
 };
