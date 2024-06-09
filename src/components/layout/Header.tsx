@@ -4,17 +4,12 @@ import LanguageSelector from '../tools/LanguageSelector';
 const Header = () => {
     return (
         <header className='flex justify-between m-10 h-20'>
-            <div className='flex'>
-                <a href="/" >
-                    <img src="logo.png" alt="Logo" className="mr-10"/>
-                </a>
-                <LanguageSelector/>
+            <div className='flex gap-5'>
+                <a className='mt-1 font-bold text-xl' href='/'>Wordle</a>
+                <LanguageSelector />
             </div>
             <nav>
                 <ul className="flex gap-2 sm:gap-10">
-                    <li>
-                        <a href="/game">Game</a>
-                    </li>
                     <li>
                         <a href="/settings">Settings</a>
                     </li>
@@ -22,7 +17,7 @@ const Header = () => {
                         <a href="/signup">Sign up</a>
                     </li>
                     <li>
-                        <a href="/signin">Log in</a>
+                        <a href="/login">Log in</a>
                     </li>
                 </ul>
             </nav>

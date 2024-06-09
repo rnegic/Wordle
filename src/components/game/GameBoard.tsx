@@ -75,7 +75,7 @@ const GameBoard = ({ secretWord }: GameBoardProps) => {
                     <Cell key={idx} value={currentGuess[idx] || ''} />
                 ))}
             </div>
-            {isInvalidWord && <div className="text-red-500 flex justify-center">Неправильное слово!</div>}
+            {isInvalidWord && <div className="text-red-500 text-lg flex justify-center">Invalid word!</div>}
         </div>
     );
 };

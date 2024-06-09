@@ -8,10 +8,11 @@ import {
 } from "@/components/ui/select"
 
 const LanguageSelector = () => {
+
     return (
         <div>
             <Select>
-                <SelectTrigger className="w-56">
+                <SelectTrigger className="sm:w-28">
                     <SelectValue placeholder="Language" />
                 </SelectTrigger>
                 <SelectContent>

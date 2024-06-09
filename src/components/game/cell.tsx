@@ -6,7 +6,7 @@ interface CellProps {
 }
 
 const Cell = ({ value, status }: CellProps) => {
-    let className = 'h-20 w-20 border-4 border-solid border-slate-300 rounded-lg p-4';
+    let className = 'flex justify-center h-20 w-20 border-4 border-solid border-slate-300 rounded-lg p-4';
 
     if (status === 'correct') {
         className += ' bg-green-500';
