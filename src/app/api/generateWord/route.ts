@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { randomWord } from '../../../lib/words';
+import { randomWord, wordLists } from '../../../lib/words';
 
 export async function GET(req: NextRequest) {
-  const word = randomWord();
+  const language = req.nextUrl.searchParams.get('language') || 'english';
+  const word = randomWord(language as keyof typeof wordLists);
   return NextResponse.json({ word });
 }
 

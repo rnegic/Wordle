@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import englishWords from 'an-array-of-english-words';
+import { wordLists } from '../../../lib/words';
 
 export async function POST(req: NextRequest) {
     const body = await req.json();
-    const { guess } = body;
-    const isValid = englishWords.includes(guess.toLowerCase());
+    const { guess, lang } = body;
+    const words = wordLists[lang as keyof typeof wordLists];
+    const isValid = words.includes(guess.toLowerCase());
     
     return NextResponse.json({ isValid });
 };
@@ -12,4 +13,3 @@ export async function POST(req: NextRequest) {
 export const GET = (req: NextRequest, res: NextResponse) => {
     return NextResponse.json({ message: 'Not Allowed!' });
 };
-

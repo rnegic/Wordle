@@ -1,6 +1,5 @@
 import englishWords from 'an-array-of-english-words';
 import ossetianWords from './ossetianWords';
-//@ts-ignore
 import russianWords from 'russian-words';
 
 interface WordLists {
@@ -9,11 +8,13 @@ interface WordLists {
   ossetian: string[];
 }
 
-const wordLists: WordLists = {
+const russianWordsArray: string[] = russianWords; 
+
+export const wordLists: WordLists = {
   english: englishWords,
-  russian: russianWords,
+  russian: russianWordsArray,
   ossetian: ossetianWords,
-};
+}
 
 export const randomWord = (language: keyof WordLists): string => {
   const words = wordLists[language];
