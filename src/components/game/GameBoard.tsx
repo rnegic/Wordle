@@ -28,6 +28,11 @@ const GameBoard = ({ secretWord, language }: GameBoardProps) => {
 
         if (currentGuess.length !== secretWord.length) return;
 
+        if (language === 'ossetian') {
+            setGuesses(prevGuesses => [...prevGuesses, currentGuess.split('')]);
+            setCurrentGuess('');
+        }
+
         const response = await fetch('././api/checkWord', {
             method: 'POST',
             headers: {
