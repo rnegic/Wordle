@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import {
     Select,
@@ -5,13 +7,20 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
-const LanguageSelector = () => {
+interface LanguageSelectorProps {
+    onLanguageChange: (language: string) => void;
+}
+
+const LanguageSelector = ({ onLanguageChange }: LanguageSelectorProps) => {
+    const handleChange = (newLanguage: string) => {
+        onLanguageChange(newLanguage);
+    };
 
     return (
         <div>
-            <Select>
+            <Select onValueChange={handleChange}>
                 <SelectTrigger className="sm:w-28">
                     <SelectValue placeholder="Language" />
                 </SelectTrigger>

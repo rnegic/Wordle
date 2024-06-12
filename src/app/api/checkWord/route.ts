@@ -3,8 +3,8 @@ import { wordLists } from '../../../lib/words';
 
 export async function POST(req: NextRequest) {
     const body = await req.json();
-    const { guess, lang } = body;
-    const words = wordLists[lang as keyof typeof wordLists];
+    const { guess, language } = body;
+    const words = wordLists[language as keyof typeof wordLists];
     const isValid = words.includes(guess.toLowerCase());
     
     return NextResponse.json({ isValid });

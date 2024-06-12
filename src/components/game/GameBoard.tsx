@@ -3,9 +3,10 @@ import Cell from "./Cell";
 
 interface GameBoardProps {
     secretWord: string;
+    language: string;
 }
 
-const GameBoard = ({ secretWord }: GameBoardProps) => {
+const GameBoard = ({ secretWord, language }: GameBoardProps) => {
     const [guesses, setGuesses] = useState<string[][]>([]);
     const [currentGuess, setCurrentGuess] = useState('');
     const [isInvalidWord, setIsInvalidWord] = useState(false);
@@ -33,7 +34,7 @@ const GameBoard = ({ secretWord }: GameBoardProps) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ guess: currentGuess })
+            body: JSON.stringify({ guess: currentGuess, language })
         });
 
         const result = await response.json();
@@ -51,6 +52,11 @@ const GameBoard = ({ secretWord }: GameBoardProps) => {
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [currentGuess]);
+
+    useEffect(() => {
+        setGuesses([]);
+        setCurrentGuess('');
+    }, [language]);
 
     const getCellStatus = (row: number, col: number) => {
         const letter = guesses[row][col];
