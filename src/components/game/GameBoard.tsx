@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cell from "./Cell";
+import Win from '../modals/Win';
 
 interface GameBoardProps {
     secretWord: string;
@@ -10,6 +11,7 @@ const GameBoard = ({ secretWord, language }: GameBoardProps) => {
     const [guesses, setGuesses] = useState<string[][]>([]);
     const [currentGuess, setCurrentGuess] = useState('');
     const [isInvalidWord, setIsInvalidWord] = useState(false);
+    const [isWinModalOpen, setIsWinModalOpen] = useState(false);
 
     const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === 'Enter') {
@@ -24,11 +26,18 @@ const GameBoard = ({ secretWord, language }: GameBoardProps) => {
         }
     };
 
+    const checkWin = () => {
+        if (currentGuess === secretWord) {
+            setIsWinModalOpen(true);
+        }
+    };
+
     const submitGuess = async () => {
 
         if (currentGuess.length !== secretWord.length) return;
 
         if (language === 'ossetian') {
+            checkWin();
             setGuesses(prevGuesses => [...prevGuesses, currentGuess.split('')]);
             setCurrentGuess('');
         }
@@ -45,6 +54,7 @@ const GameBoard = ({ secretWord, language }: GameBoardProps) => {
             const result = await response.json();
 
             if (result.isValid) {
+                checkWin();
                 setGuesses(prevGuesses => [...prevGuesses, currentGuess.split('')]);
                 setCurrentGuess('');
             } else {
@@ -74,21 +84,28 @@ const GameBoard = ({ secretWord, language }: GameBoardProps) => {
     };
 
     return (
-        <div className="flex flex-col gap-4">
-            {guesses.map((row, rowIdx) => (
-                <div key={rowIdx} className="flex gap-4">
-                    {row.map((col, colIdx) => (
-                        <Cell key={colIdx} value={col} status={getCellStatus(rowIdx, colIdx)} />
+        <>
+            <div className="flex flex-col gap-4">
+                {guesses.map((row, rowIdx) => (
+                    <div key={rowIdx} className="flex gap-4">
+                        {row.map((col, colIdx) => (
+                            <Cell key={colIdx} value={col} status={getCellStatus(rowIdx, colIdx)} />
+                        ))}
+                    </div>
+                ))}
+                <div className="flex gap-4">
+                    {Array.from({ length: secretWord.length }).map((_, idx) => (
+                        <Cell key={idx} value={currentGuess[idx] || ''} />
                     ))}
                 </div>
-            ))}
-            <div className="flex gap-4">
-                {Array.from({ length: secretWord.length }).map((_, idx) => (
-                    <Cell key={idx} value={currentGuess[idx] || ''} />
-                ))}
+                {isInvalidWord && <div className="text-red-500 text-lg flex justify-center">Invalid word!</div>}
             </div>
-            {isInvalidWord && <div className="text-red-500 text-lg flex justify-center">Invalid word!</div>}
-        </div>
+
+            <Win
+                isOpen={isWinModalOpen}
+                onClose={() => setIsWinModalOpen(false)}
+            />
+        </>
     );
 };
 
