@@ -15,8 +15,7 @@ const GameBoard = ({ secretWord, language }: GameBoardProps) => {
         if (event.key === 'Enter') {
             submitGuess();
         }
-
-        else if (/^[a-zA-Z]$/.test(event.key) && currentGuess.length < secretWord.length) {
+        else if (/^[a-zA-Zа-яА-ЯæÆ]$/.test(event.key) && currentGuess.length < secretWord.length) {
             setCurrentGuess(word => word + event.key.toUpperCase());
         }
 
