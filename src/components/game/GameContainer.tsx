@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import GameBoard from '@/components/game/GameBoard';
 import { useLanguage } from '@/context/LanguageContext';
+import OssetianKey from '../tools/Keyboard';
 
 export default function GameContainer() {
   const [secretWord, setSecretWord] = useState<string>('');
@@ -28,6 +29,7 @@ export default function GameContainer() {
   return (
     <div>
       {secretWord ? <GameBoard secretWord={secretWord} language={language} /> : <div>Подождите...</div>}
+      {language === 'ossetian' && <OssetianKey />}
     </div>
   );
 }
