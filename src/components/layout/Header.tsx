@@ -3,6 +3,7 @@
 import React from 'react';
 import LanguageSelector from '../tools/LanguageSelector';
 import { useLanguage } from '../../context/LanguageContext';
+import ShowKeyboardButton from '../tools/ShowKeyBoardButton';
 
 const Header = () => {
     const { setLanguage } = useLanguage();
@@ -12,9 +13,10 @@ const Header = () => {
             <div className='flex gap-5'>
                 <a className='mt-1 font-bold text-xl' href='/'>Wordle</a>
                 <LanguageSelector onLanguageChange={setLanguage} />
+                <ShowKeyboardButton/>
             </div>
             <nav>
-                <ul className="flex gap-2 sm:gap-10">
+                <ul className="hidden sm:flex gap-5">
                     <li>
                         <a href="/settings">Settings</a>
                     </li>

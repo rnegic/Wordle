@@ -6,7 +6,7 @@ interface CellProps {
 }
 
 const Cell = ({ value, status }: CellProps) => {
-    let className = 'flex justify-center h-20 w-20 border-4 border-solid border-slate-300 rounded-lg p-4';
+    let className = 'flex justify-center size-12 border-1 border-solid border-slate-300 rounded-lg sm:size-20 border-4 p-4';
 
     if (status === 'correct') {
         className += ' bg-green-500';
@@ -20,7 +20,7 @@ const Cell = ({ value, status }: CellProps) => {
 
     return (
         <div className={className}>
-            <span className="text-white font-bold text-3xl">{value.toUpperCase()}</span>
+            <span className="text-white font-bold text-base sm:text-3xl">{value.toUpperCase()}</span>
         </div>
     );
 };
