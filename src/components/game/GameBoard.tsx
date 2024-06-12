@@ -33,22 +33,24 @@ const GameBoard = ({ secretWord, language }: GameBoardProps) => {
             setCurrentGuess('');
         }
 
-        const response = await fetch('././api/checkWord', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ guess: currentGuess, language })
-        });
+        else {
+            const response = await fetch('././api/checkWord', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ guess: currentGuess, language })
+            });
 
-        const result = await response.json();
+            const result = await response.json();
 
-        if (result.isValid) {
-            setGuesses(prevGuesses => [...prevGuesses, currentGuess.split('')]);
-            setCurrentGuess('');
-        } else {
-            setIsInvalidWord(true);
-            setTimeout(() => setIsInvalidWord(false), 1000);
+            if (result.isValid) {
+                setGuesses(prevGuesses => [...prevGuesses, currentGuess.split('')]);
+                setCurrentGuess('');
+            } else {
+                setIsInvalidWord(true);
+                setTimeout(() => setIsInvalidWord(false), 1000);
+            }
         }
     };
 
