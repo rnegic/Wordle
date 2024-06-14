@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Cell from "./Cell";
+import Cell from '@/components/game/Cell';
 import Win from '../modals/Win';
 
 interface GameBoardProps {
