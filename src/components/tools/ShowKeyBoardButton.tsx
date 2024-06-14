@@ -18,11 +18,11 @@ const ShowKeyboardButton = () => {
             >
                 Show Keyboard
             </Button>
-            <input 
-                ref={inputRef} 
-                type="text" 
-                className="absolute opacity-0 size-0" 
-                style={{ zIndex: -1 }} 
+            <input
+                ref={inputRef}
+                type="text"
+                className="absolute -top-full left-full"
+                style={{ visibility: 'hidden' }}
                 tabIndex={-1}
             />
         </div>
