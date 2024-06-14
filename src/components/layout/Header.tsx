@@ -9,14 +9,14 @@ const Header = () => {
     const { setLanguage } = useLanguage();
 
     return (
-        <header className='flex justify-between m-10 h-20'>
+        <header className='flex justify-center mt-10 h-20 md:justify-between m-10'>
             <div className='flex gap-5'>
                 <a className='mt-1 font-bold text-xl' href='/'>Wordle</a>
                 <LanguageSelector onLanguageChange={setLanguage} />
                 <ShowKeyboardButton/>
             </div>
             <nav>
-                <ul className="hidden sm:flex gap-5">
+                <ul className="hidden md:flex gap-5">
                     <li>
                         <a href="/settings">Settings</a>
                     </li>

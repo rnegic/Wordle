@@ -1,27 +1,31 @@
-import React from 'react';
-import { Button } from "@/components/ui/button"
+import React, { useRef } from 'react';
+import { Button } from "@/components/ui/button";
 
 const ShowKeyboardButton = () => {
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
     const handleFocus = () => {
-
-        const tempInput = document.createElement('input');
-        tempInput.style.position = 'absolute';
-        tempInput.style.opacity = '0';
-        document.body.appendChild(tempInput);
-        tempInput.focus();
-
-        setTimeout(() => {
-            document.body.removeChild(tempInput);
-        }, 1000);
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
     };
 
     return (
-        <Button
-            onClick={handleFocus}
-            className='block md:hidden'
-        >
-            Show Keyboard
-        </Button>
+        <div>
+            <Button
+                onClick={handleFocus}
+                className='block lg:hidden'
+            >
+                Show Keyboard
+            </Button>
+            <input 
+                ref={inputRef} 
+                type="text" 
+                className="absolute opacity-0 size-0" 
+                style={{ zIndex: -1 }} 
+                tabIndex={-1}
+            />
+        </div>
     );
 };
 
