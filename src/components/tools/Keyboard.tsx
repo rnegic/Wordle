@@ -13,17 +13,18 @@ const layouts: Layouts = {
     english: [
         ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
         ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-        ['z', 'x', 'c', 'v', 'b', 'n', 'm']
+        ['z', 'x', 'c', 'v', 'b', 'n', 'm', 'Enter', 'Backspace']
     ],
     russian: [
         ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з'],
         ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э'],
-        ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю']
+        ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'Enter', 'Backspace']
     ],
     ossetian: [
         ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з'],
         ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'æ'],
-        ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'ы']
+        ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'ы',],
+        ['Backspace', 'Enter']
     ]
 };
 
@@ -58,9 +59,9 @@ const Keyboard = ({ language }: KeyboardProps) => {
                         <Button
                             key={key}
                             onClick={() => handleKeyClick(key)}
-                            className='size-8 sm:size-16 text-2xl'
+                            className={`size-8 sm:size-16 text-2xl ${key === 'Enter' || key === 'Backspace' ? 'w-12 text-xs sm:w-32 sm:text-lg' : ''}`}
                         >
-                            {key.toUpperCase()}
+                            {key === 'Backspace' ? '←' : key.toUpperCase()}
                         </Button>
                     ))}
                 </div>
