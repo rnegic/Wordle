@@ -1,11 +1,36 @@
 import React from 'react';
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
-const generateKeyboardEvent = () => {
+type Language = 'english' | 'russian' | 'ossetian';
+
+interface Layouts {
+    english: string[][];
+    russian: string[][];
+    ossetian: string[][];
+}
+
+const layouts: Layouts = {
+    english: [
+        ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+        ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+        ['z', 'x', 'c', 'v', 'b', 'n', 'm']
+    ],
+    russian: [
+        ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з'],
+        ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э'],
+        ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю']
+    ],
+    ossetian: [
+        ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з'],
+        ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'æ'],
+        ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'ы']
+    ]
+};
+
+const generateKeyboardEvent = (key: string, code: string) => {
     const event = new KeyboardEvent('keydown', {
-        key: 'æ',
-        code: 'KeyAE',
-        keyCode: 198,
+        key,
+        code,
         bubbles: true,
         cancelable: true,
     });
@@ -13,23 +38,35 @@ const generateKeyboardEvent = () => {
     document.dispatchEvent(event);
 };
 
-const KeyboardButton = () => {
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        generateKeyboardEvent();
+interface KeyboardProps {
+    language: Language;
+}
+
+const Keyboard = ({ language }: KeyboardProps) => {
+
+    const layout = layouts[language];
+
+    const handleKeyClick = (key: string) => {
+        generateKeyboardEvent(key, `Key${key.toUpperCase()}`);
     };
 
     return (
-        <div className='flex justify-center mt-10'>
-            <Button
-                onClick={handleClick}
-                onKeyDown={(event) => event.key === 'Enter' && event.preventDefault()}
-                className='text-2xl size-16'
-            >
-                æ
-            </Button>
+        <div className='flex flex-col items-center mt-16'>
+            {layout.map((row, rowIndex) => (
+                <div key={rowIndex} className='flex gap-0.5 my-1 sm:gap-1'>
+                    {row.map((key) => (
+                        <Button
+                            key={key}
+                            onClick={() => handleKeyClick(key)}
+                            className='size-8 sm:size-16 text-2xl'
+                        >
+                            {key.toUpperCase()}
+                        </Button>
+                    ))}
+                </div>
+            ))}
         </div>
     );
 };
 
-export default KeyboardButton;
+export default Keyboard;

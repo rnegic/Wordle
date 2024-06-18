@@ -87,13 +87,13 @@ const GameBoard = ({ secretWord, language }: GameBoardProps) => {
         <>
             <div className="flex flex-col gap-4">
                 {guesses.map((row, rowIdx) => (
-                    <div key={rowIdx} className="flex sm:gap-3">
+                    <div key={rowIdx} className="flex sm:gap-3 justify-center">
                         {row.map((col, colIdx) => (
                             <Cell key={colIdx} value={col} status={getCellStatus(rowIdx, colIdx)} />
                         ))}
                     </div>
                 ))}
-                <div className="flex sm:gap-3">
+                <div className="flex justify-center sm:gap-3">
                     {Array.from({ length: secretWord.length }).map((_, idx) => (
                         <Cell key={idx} value={currentGuess[idx] || ''} />
                     ))}

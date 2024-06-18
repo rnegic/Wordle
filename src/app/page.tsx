@@ -1,5 +1,6 @@
 import React from "react";
 import GameContainer from "@/components/game/GameContainer";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export default function Home() {
   return (
