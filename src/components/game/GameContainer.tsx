@@ -28,7 +28,7 @@ export default function GameContainer() {
   console.log(language);
   return (
     <div>
-      {secretWord ? <GameBoard secretWord={secretWord} language={language} /> : <div>Подождите...</div>}
+      {secretWord ? <GameBoard secretWord={secretWord} language={language} /> : <div className='flex justify-center'>Подождите...</div>}
       <Keyboard language={language as 'english' | 'russian' | 'ossetian'} />
     </div>
   );
