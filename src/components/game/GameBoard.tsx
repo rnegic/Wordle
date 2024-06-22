@@ -73,7 +73,7 @@ const GameBoard = ({ secretWord, language, wordLength }: GameBoardProps) => {
     useEffect(() => {
         setGuesses([]);
         setCurrentGuess('');
-    }, [language]);
+    }, [language, wordLength]);
 
     const getCellStatus = (row: number, col: number) => {
         const letter = guesses[row][col];
