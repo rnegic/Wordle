@@ -5,9 +5,10 @@ import Win from '../modals/Win';
 interface GameBoardProps {
     secretWord: string;
     language: string;
+    wordLength: number;
 }
 
-const GameBoard = ({ secretWord, language }: GameBoardProps) => {
+const GameBoard = ({ secretWord, language, wordLength }: GameBoardProps) => {
     const [guesses, setGuesses] = useState<string[][]>([]);
     const [currentGuess, setCurrentGuess] = useState('');
     const [isInvalidWord, setIsInvalidWord] = useState(false);
@@ -17,7 +18,7 @@ const GameBoard = ({ secretWord, language }: GameBoardProps) => {
         if (event.key === 'Enter') {
             submitGuess();
         }
-        else if (/^[a-zA-Zа-яА-ЯæÆ]$/.test(event.key) && currentGuess.length < secretWord.length) {
+        else if (/^[a-zA-Zа-яА-ЯæÆ]$/.test(event.key) && currentGuess.length < wordLength) {
             setCurrentGuess(word => word + event.key.toUpperCase());
         }
 

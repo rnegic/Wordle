@@ -8,7 +8,7 @@ interface WordLists {
   ossetian: string[];
 }
 
-const russianWordsArray: string[] = russianWords; 
+const russianWordsArray: string[] = russianWords;
 
 export const wordLists: WordLists = {
   english: englishWords,
@@ -16,8 +16,8 @@ export const wordLists: WordLists = {
   ossetian: ossetianWords,
 }
 
-export const randomWord = (language: keyof WordLists): string => {
-  const words = wordLists[language];
+export const randomWord = (language: keyof WordLists, wordLength: number): string => {
+  const words = wordLists[language].filter(word => word.length === wordLength);
   const index = Math.floor(Math.random() * words.length);
   return words[index];
 };

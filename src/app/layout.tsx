@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { LanguageProvider } from '@/context/LanguageContext';
+import { WordLengthProvider } from "@/context/WordLengthContext";
 import { Suspense } from "react";
 import { Metrika } from "@/components/metrika";
 
@@ -22,19 +23,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
-        
+
         <LanguageProvider>
-          <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
+          <WordLengthProvider>
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </WordLengthProvider>
         </LanguageProvider>
 
         <Suspense>
           <Metrika />
         </Suspense>
-        
+
       </body>
     </html>
   );

@@ -21,7 +21,7 @@ const LanguageSelector = ({ onLanguageChange }: LanguageSelectorProps) => {
     return (
         <div>
             <Select onValueChange={handleChange}>
-                <SelectTrigger className="sm:w-28">
+                <SelectTrigger className="w-26 sm:w-28">
                     <SelectValue placeholder="Language" />
                 </SelectTrigger>
                 <SelectContent>

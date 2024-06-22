@@ -14,9 +14,9 @@ const ShowKeyboardButton = () => {
         <div>
             <Button
                 onClick={handleFocus}
-                className='block lg:hidden'
+                className='block w-26 lg:hidden'
             >
-                Show Keyboard
+                Rating
             </Button>
             <input
                 ref={inputRef}

@@ -18,11 +18,11 @@ interface WinModalProps {
 const Win: React.FC<WinModalProps> = ({ isOpen, onClose }) => {
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="bg-white text-black">
+            <DialogContent className="bg-white text-black sm:w-60 sm:h-45">
                 <DialogHeader>
                     <DialogTitle>Congratulations!</DialogTitle>
                 </DialogHeader>
-                <div className="py-4 px-6">You won this level!</div>
+                <div className="py-2 px-6">You won this level!</div>
                 <DialogFooter>
                     <Button onClick={() => {
                         onClose();
